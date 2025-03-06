@@ -1,0 +1,23 @@
+#include <exception>
+
+// CustomException class inheriting from std::exception (equivalent to Python's Exception)
+class CustomException : public std::exception {
+    // No additional members, exactly like the Python "pass"
+};
+
+// Function "recurse" which takes an integer "depth" with a default value of 0
+void recurse(int depth = 0) {
+    try {
+        // Throwing a CustomException, similar to "raise CustomException()" in Python
+        throw CustomException();
+    } catch (const CustomException&) {
+        // Catching the CustomException and calling recurse recursively with incremented depth
+        recurse(depth + 1);
+    }
+}
+
+// The main function which calls recurse(), equivalent to the Python "main" and its call
+int main() {
+    recurse();
+    return 0;
+}
