@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+
+class Program
+{
+    static void Main()
+    {
+        // Setup: in global scope, use a comprehension with colliding variable name
+        object foo = null;
+        var list = new List<int> { 0 };
+        foreach (var item in list)
+        {
+            foo = item;
+        }
+
+        // Repro: assigning to frame.f_locals and then merging to fast works only the first time
+        var frame = new StackFrame(1, true);
+        
+        // Simulating frame.f_locals assignment
+        var locals = new Dictionary<string, object>();
+        locals["a"] = 1;
+        Console.WriteLine(locals["a"]);  // 1
+
+        locals["b"] = 2;
+        // Simulating the behavior of NameError
+        if (!locals.ContainsKey("b"))
+        {
+            throw new Exception("NameError: name 'b' is not defined");
+        }
+    }
+}
+
