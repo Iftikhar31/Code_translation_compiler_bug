@@ -1,0 +1,19 @@
+import java.io.*;
+
+public class Main {
+    // Define the function foo which takes an integer n as parameter
+    public static void foo(int n) {
+        // While n is less than 3, print n and increment n
+        while (n < 3) {
+            System.out.println(n);
+            n += 1;
+        }
+        // In Python, 'return None' is used; in Java, returning from a void method is implicit.
+        return;
+    }
+
+    public static void main(String[] args) {
+        // Call the function foo with 0 as the argument
+        foo(0);
+    }
+}
