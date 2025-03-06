@@ -1,0 +1,15 @@
+// Setup: in global scope, use a comprehension with colliding variable name
+let mut foo = None;
+let _ = (0..1).map(|x| { foo = Some(x); foo }).collect::<Vec<_>>();
+
+// Repro: assigning to frame.f_locals and then merging to fast works only the first time
+use std::collections::HashMap;
+
+let mut frame_locals: HashMap<&str, i32> = HashMap::new();
+
+frame_locals.insert("a", 1);
+println!("{}", frame_locals.get("a").unwrap()); // 1
+
+frame_locals.insert("b", 2);
+println!("{}", frame_locals.get("b").unwrap_or(&panic!("NameError: name 'b' is not defined"))); // This will panic
+
