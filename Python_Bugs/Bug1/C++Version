@@ -1,0 +1,23 @@
+#include <iostream>
+#include <vector>
+
+int main() {
+    // Setup: in global scope, use a comprehension with colliding variable name
+    int foo = 0; // Initialize foo
+    std::vector<int> vec = {0};
+    for (int foo : vec) {
+        // This loop does not change the outer foo
+    }
+
+    // Repro: assigning to frame.f_locals and then merging to fast works only the first time
+    int a = 1;
+    std::cout << a << std::endl;  // 1
+
+    // For the second variable, we cannot directly manipulate the local frame like in Python
+    // So we will just demonstrate that 'b' is not defined
+    // Uncommenting the next line will cause a compilation error
+    // std::cout << b << std::endl;  // This will not compile as 'b' is not defined
+
+    return 0;
+}
+
