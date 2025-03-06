@@ -1,0 +1,34 @@
+import java.lang.reflect.Field;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        // Setup: in global scope, use a comprehension with colliding variable name
+        Object foo = null;
+        int[] arr = {0};
+        for (int i : arr) {
+            foo = i;
+        }
+
+        // Repro: assigning to frame.f_locals and then merging to fast works only the first time
+        // Note: Java does not have a direct equivalent to Python's frame and locals manipulation
+        // This part is not directly translatable due to language differences
+        // However, we can simulate the behavior with a simple example
+
+        // Simulating frame.f_locals
+        Field aField = Main.class.getDeclaredField("a");
+        aField.setInt(null, 1);
+        System.out.println(a);  // 1
+
+        Field bField = Main.class.getDeclaredField("b");
+        bField.setInt(null, 2);
+        try {
+            System.out.println(b);  // This will throw an exception
+        } catch (NoSuchFieldException e) {
+            System.out.println("NameError: name 'b' is not defined");
+        }
+    }
+
+    static int a;
+    static int b;
+}
+
