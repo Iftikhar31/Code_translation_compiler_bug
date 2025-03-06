@@ -1,0 +1,15 @@
+#include <iostream>
+
+// Function foo takes an integer n and prints numbers while n is less than 3
+void foo(int n) {
+    while(n < 3) {
+        std::cout << n << std::endl; // Print n to the console
+        n += 1;
+    }
+    return; // Returns nothing (equivalent to Python's "return None")
+}
+
+int main() {
+    foo(0); // Calling function foo with argument 0
+    return 0;
+}
