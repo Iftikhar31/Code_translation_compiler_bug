@@ -1,0 +1,17 @@
+use std::option::Option; // Import Option from standard library (for clarity)
+
+fn foo(mut n: i32) -> Option<()> {
+    // While n < 3, print n and increment it by 1
+    while n < 3 {
+        println!("{}", n);
+        n += 1;
+    }
+
+    // Return None to mimic Python's "return None"
+    Option::None
+}
+
+fn main() {
+    // Call foo with 0
+    foo(0);
+}
