@@ -2,4 +2,5 @@
 https://github.com/dotnet/roslyn/issues/77245
 https://github.com/dotnet/roslyn/issues/76886
 https://github.com/dotnet/roslyn/issues/76842
+https://github.com/dotnet/roslyn/issues/72680
 https://github.com/dotnet/roslyn/issues/66495
