@@ -1,0 +1,24 @@
+use std::error::Error;
+
+#[derive(Debug)]
+struct CustomException;
+
+impl std::fmt::Display for CustomException {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "CustomException occurred")
+    }
+}
+
+impl Error for CustomException {}
+
+fn recurse(depth: usize) -> Result<(), Box<dyn Error>> {
+    Err(Box::new(CustomException))?;
+    Ok(())
+}
+
+fn main() {
+    if let Err(e) = recurse(0) {
+        println!("Caught an error: {}", e);
+    }
+}
+
