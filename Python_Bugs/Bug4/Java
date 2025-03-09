@@ -1,0 +1,44 @@
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        List<String> strings = Arrays.asList(
+            "hello world",
+            "バルーンフルーツ",
+            "バルーンフィッシュ",
+            "ライフアップキノコ"
+        );
+
+        String encoding = "Shift_JIS";
+
+        for (String string : strings) {
+            byte[] encodedDirectNull = (string + "\0").getBytes(Charset.forName(encoding));
+            byte[] encodedAppendNull = string.getBytes(Charset.forName(encoding));
+            byte[] nullByte = "\0".getBytes(Charset.forName(encoding));
+            byte[] combined = new byte[encodedAppendNull.length + nullByte.length];
+            System.arraycopy(encodedAppendNull, 0, combined, 0, encodedAppendNull.length);
+            System.arraycopy(nullByte, 0, combined, encodedAppendNull.length, nullByte.length);
+
+            System.out.println(repr(string));
+            System.out.println(" - encoded_append_null (EXPECTED!): " + bytesToHex(combined));
+            System.out.println(" - encoded_direct_null:            " + bytesToHex(encodedDirectNull));
+            System.out.println();
+        }
+    }
+
+    private static String repr(String string) {
+        return "\"" + string + "\"";
+    }
+
+    private static String bytesToHex(byte[] bytes) {
+        StringBuilder hexString = new StringBuilder();
+        for (byte b : bytes) {
+            hexString.append(String.format("%02x", b));
+        }
+        return hexString.toString();
+    }
+}
+
