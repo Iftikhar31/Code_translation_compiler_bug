@@ -4,12 +4,17 @@ https://github.com/python/cpython/issues/130809
 
 https://github.com/python/cpython/issues/122821
 
-#TRACEBACK
+### TRACEBACK
 https://github.com/python/cpython/issues/118978
+
 Should display traceback rather than just overflow. 
+
 C# broken, only says stack overflow 
+
 C++ broken, only says timeout 
+
 Java works
+
 Rust recursion is not supported
 
 
