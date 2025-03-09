@@ -1,0 +1,26 @@
+using System;
+
+class CustomException : Exception
+{
+}
+
+class Program
+{
+    static void Recurse(int depth = 0)
+    {
+        try
+        {
+            throw new CustomException();
+        }
+        catch (CustomException)
+        {
+            Recurse(depth + 1);
+        }
+    }
+
+    static void Main()
+    {
+        Recurse();
+    }
+}
+
