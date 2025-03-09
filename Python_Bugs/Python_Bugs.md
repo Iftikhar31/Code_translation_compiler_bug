@@ -28,8 +28,17 @@ Java works
 
 Rust recursion is not supported
 
-
+### Truncation on encoding
 https://github.com/python/cpython/issues/101828
 
+Randomly truncates on specific encodings when appending
+
+C# cannot translate encoding
+
+C++ cannot translate encoding
+
+Java does not have this bug 
+
+Rust cannot translate encoding
 
 https://github.com/python/cpython/issues/130716
