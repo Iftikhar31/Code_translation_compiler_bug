@@ -1,0 +1,54 @@
+extern crate encoding;
+extern crate hex;
+
+use encoding::{Encoding, EncoderTrap};
+use encoding::label::encoding_from_whatwg_label;
+
+fn main() {
+    // strings: list[str] = [
+    //    "hello world",
+    //    "バルーンフルーツ",
+    //    "バルーンフィッシュ",
+    //    "ライフアップキノコ"
+    // ]
+    let strings: Vec<&str> = vec![
+        "hello world",
+        "バルーンフルーツ",
+        "バルーンフィッシュ",
+        "ライフアップキノコ",
+    ];
+
+    // encoding = "shift_jisx0213"
+    let encoding_name = "shift_jisx0213";
+    let encoding = encoding_from_whatwg_label(encoding_name).unwrap();
+
+    // for string in strings:
+    for string in strings.iter() {
+        // encoded_direct_null = (string + "\0").encode(encoding)
+        let mut string_with_null = String::from(*string);
+        string_with_null.push('\0');
+        let encoded_direct_null = encoding
+            .encode(&string_with_null, EncoderTrap::Strict)
+            .unwrap();
+
+        // encoded_append_null = string.encode(encoding) + "\0".encode(encoding)
+        let encoded_string = encoding.encode(*string, EncoderTrap::Strict).unwrap();
+        let encoded_null = encoding.encode("\0", EncoderTrap::Strict).unwrap();
+        let mut encoded_append_null = encoded_string.clone();
+        encoded_append_null.extend(encoded_null);
+
+        // print(repr(string))
+        println!("'{}'", string);
+        // print(" - encoded_append_null (EXPECTED!):", encoded_append_null.hex())
+        println!(
+            " - encoded_append_null (EXPECTED!): {}",
+            hex::encode(&encoded_append_null)
+        );
+        // print(" - encoded_direct_null:            ", encoded_direct_null.hex())
+        println!(
+            " - encoded_direct_null:            {}",
+            hex::encode(&encoded_direct_null)
+        );
+        println!();
+    }
+}
