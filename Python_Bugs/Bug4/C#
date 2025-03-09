@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+class Program
+{
+    static void Main()
+    {
+        List<string> strings = new List<string>
+        {
+            "hello world",
+            "バルーンフルーツ",
+            "バルーンフィッシュ",
+            "ライフアップキノコ"
+        };
+
+
+        foreach (string str in strings)
+        {
+            byte[] encodedDirectNull = Encoding.GetEncoding(encoding).GetBytes(str + "\0");
+            byte[] encodedAppendNull = Encoding.GetEncoding(encoding).GetBytes(str);
+            byte[] nullByte = Encoding.GetEncoding(encoding).GetBytes("\0");
+            byte[] combined = new byte[encodedAppendNull.Length + nullByte.Length];
+            Buffer.BlockCopy(encodedAppendNull, 0, combined, 0, encodedAppendNull.Length);
+            Buffer.BlockCopy(nullByte, 0, combined, encodedAppendNull.Length, nullByte.Length);
+
+            Console.WriteLine(repr(str));
+            Console.WriteLine(" - encoded_append_null (EXPECTED!): " + BitConverter.ToString(combined).Replace("-", "").ToLower());
+            Console.WriteLine(" - encoded_direct_null:            " + BitConverter.ToString(encodedDirectNull).Replace("-", "").ToLower());
+            Console.WriteLine();
+        }
+    }
+
+    static string repr(string str)
+    {
+        return $"'{str}'";
+    }
+}
+
