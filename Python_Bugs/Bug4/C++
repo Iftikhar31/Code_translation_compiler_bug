@@ -1,0 +1,41 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <codecvt>
+#include <locale>
+
+int main() {
+    std::vector<std::string> strings = {
+        "hello world",
+        "バルーンフルーツ",
+        "バルーンフィッシュ",
+        "ライフアップキノコ"
+    };
+
+    std::string encoding = "shift_jisx0213";
+
+    for (const auto& string : strings) {
+        std::wstring_convert<std::codecvt_utf8<wchar_t>> converter;
+        std::wstring wide_string = converter.from_bytes(string);
+        
+        // Encoding with null terminator
+        std::string encoded_direct_null = string + "\0";
+        std::string encoded_append_null = string + "\0";
+
+        std::cout << std::quoted(string) << std::endl;
+        std::cout << " - encoded_append_null (EXPECTED!): ";
+        for (unsigned char c : encoded_append_null) {
+            std::cout << std::hex << (int)c;
+        }
+        std::cout << std::endl;
+
+        std::cout << " - encoded_direct_null:            ";
+        for (unsigned char c : encoded_direct_null) {
+            std::cout << std::hex << (int)c;
+        }
+        std::cout << std::endl << std::endl;
+    }
+
+    return 0;
+}
+
