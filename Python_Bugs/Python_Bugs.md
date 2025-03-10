@@ -41,7 +41,7 @@ Java does not have this bug
 
 Rust cannot translate encoding
 
-### Update during running causes segmentation fault
-(https://github.com/python/cpython/issues/128341)
+### destroy_gil() is not called over multiple Py_Initialize() / Py_Finalize() calls
+[(https://github.com/python/cpython/issues/128341)](https://github.com/python/cpython/issues/104324)
 
-Cannot be reproduced
+Cannot be reproduced, method only exists in python. 
