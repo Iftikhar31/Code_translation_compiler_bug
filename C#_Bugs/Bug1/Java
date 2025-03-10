@@ -1,0 +1,39 @@
+import java.util.Optional;
+
+public class Main {
+    public static void main(String[] args) {
+        Integer i = null;
+        C c = null;
+
+        if (c != null) {
+            c = c.noTuple(); // No warning (as expected)
+        }
+
+        if (c != null) {
+            TupleResult result = c.tuple(); // No warning
+            c = result.c;
+            i = result.i;
+        }
+    }
+}
+
+class C {
+    public C noTuple() {
+        throw new UnsupportedOperationException();
+    }
+
+    public TupleResult tuple() {
+        throw new UnsupportedOperationException();
+    }
+}
+
+class TupleResult {
+    public C c;
+    public Integer i;
+
+    public TupleResult(C c, Integer i) {
+        this.c = c;
+        this.i = i;
+    }
+}
+
