@@ -41,4 +41,7 @@ Java does not have this bug
 
 Rust cannot translate encoding
 
-https://github.com/python/cpython/issues/130716
+### Update during running causes segmentation fault
+(https://github.com/python/cpython/issues/128341)
+
+Cannot be reproduced
