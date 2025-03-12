@@ -1,0 +1,7 @@
+if True:
+    values = [1, 2]
+else:
+    values = [2, 1]
+
+for i in values:
+    pass
