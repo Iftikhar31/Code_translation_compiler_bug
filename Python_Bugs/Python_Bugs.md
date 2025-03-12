@@ -13,8 +13,7 @@ Rust translator does not translate the problem correctly
 ### Order of conditionals not correct after compilation 
 https://github.com/python/cpython/issues/122821
 
-Lots of effort to test. Is it worth it? 
-
+Impossible to translate, this is an error with the representation of the code after translation. All other representations look vastly different and do not have the same problem. 
 ### TRACEBACK
 https://github.com/python/cpython/issues/118978
 
