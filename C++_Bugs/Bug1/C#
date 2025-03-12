@@ -1,0 +1,12 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        foreach (var i in (true ? new List<int> { 1, 2 } : new List<int> { 2, 1 }))
+        {
+        }
+    }
+}
