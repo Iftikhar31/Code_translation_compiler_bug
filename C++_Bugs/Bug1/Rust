@@ -1,0 +1,6 @@
+fn main() {
+    let vec = if true { vec![1, 2] } else { vec![2, 1] };
+    for i in vec {
+        // Do something with i
+    }
+}
