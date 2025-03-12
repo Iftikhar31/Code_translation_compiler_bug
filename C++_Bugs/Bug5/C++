@@ -1,0 +1,11 @@
+template <class T, class U>
+struct C {};
+
+template <class T>
+void explode() {
+    explode<C<T, T>>();
+}
+
+int main() {
+    explode<int>();
+}
