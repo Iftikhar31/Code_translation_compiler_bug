@@ -1,0 +1,18 @@
+use std::fmt::Write;
+
+fn main() {
+    let mut a: i32 = 0; // Initialize a
+    let mut b: i32 = 0; // Initialize b
+    let mut c: i32 = 0;
+
+    if a + 2 != 0 {
+        c = 1;
+    }
+
+    let d = (1 + c - 2 + c == 1) as i32 - 1;
+    b = ((d + 1) << d) + d;
+
+    let mut output = String::new();
+    write!(&mut output, "{:X}\n", b).unwrap();
+    print!("{}", output);
+}
