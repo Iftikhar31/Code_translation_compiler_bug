@@ -1,0 +1,15 @@
+import sys
+
+a = 0
+b = 0
+
+def main():
+    c = 0
+    if a + 2:
+        c = 1
+    d = (1 + c - 2 + c == 1) - 1
+    b = ((d + 1) << d) + d
+    print(f"{b:X}")
+
+if __name__ == "__main__":
+    main()
