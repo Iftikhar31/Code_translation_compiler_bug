@@ -1,0 +1,8 @@
+class f {
+    virtual ~f();
+};
+struct g {
+      ~g();
+};
+__attribute((init_priority(99)))
+g _S_head_owner;
