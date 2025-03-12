@@ -1,0 +1,19 @@
+int main()
+{
+
+        sizeof(int[1++]);
+        typeof(int[n++]); 
+        struct { int x[1++]; };
+        struct foo { int x[1++]; };
+        struct { int x[1++]; } x;
+        struct bar { int x[1++]; } y;
+        (int(*)[1++])0;
+        (typeof(int(*)[1++]))0;
+        (struct { int x[n++]; }*)0;
+        (struct q { int x[n++]; }*)0;
+        typeof(struct { int x[n++]; });
+        typeof(struct r { int x[n++]; });
+
+        if (13 != 1)
+                __builtin_abort();
+}
