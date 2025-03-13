@@ -1,0 +1,10 @@
+class F:
+    def __del__(self):
+        pass
+
+class G:
+    def __del__(self):
+        pass
+
+_S_head_owner = G()
+
