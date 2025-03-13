@@ -1,0 +1,23 @@
+using System;
+
+class F : IDisposable
+{
+    public void Dispose()
+    {
+        // Destructor logic here
+    }
+}
+
+struct G : IDisposable
+{
+    public void Dispose()
+    {
+        // Destructor logic here
+    }
+}
+
+static class Program
+{
+    static G _S_head_owner = new G();
+}
+
