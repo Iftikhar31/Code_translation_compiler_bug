@@ -1,0 +1,8 @@
+class C:
+    pass
+
+def explode():
+    explode(C)
+
+if __name__ == "__main__":
+    explode()
