@@ -1,0 +1,11 @@
+class C<T, U> {}
+
+class Main {
+    static <T> void explode() {
+        explode(new C<T, T>());
+    }
+
+    public static void main(String[] args) {
+        explode(Integer.class);
+    }
+}
