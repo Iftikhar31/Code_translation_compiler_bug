@@ -1,0 +1,9 @@
+struct C<T, U> {}
+
+fn explode<T>() {
+    explode::<C<T, T>>();
+}
+
+fn main() {
+    explode::<i32>();
+}
