@@ -1,0 +1,16 @@
+using System;
+
+public class C<T, U> { }
+
+public class Program
+{
+    public static void Explode<T>()
+    {
+        Explode<C<T, T>>();
+    }
+
+    public static void Main()
+    {
+        Explode<int>();
+    }
+}
