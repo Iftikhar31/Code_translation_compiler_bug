@@ -1,0 +1,43 @@
+fn main() {
+    // Rust does not have a direct equivalent for sizeof, typeof, or C-style structs with variable-length arrays.
+    // Instead, we can use slices or vectors for dynamic sizes.
+
+    // Placeholder for the equivalent of sizeof(int[1++]);
+    // In Rust, we can use std::mem::size_of::<T>() for size of types.
+    // let size_of_int_array = std::mem::size_of::<[i32; 1]>();
+
+    // Placeholder for the equivalent of typeof(int[n++]);
+    // Rust does not have a direct equivalent for typeof, we can use type annotations.
+
+    // Structs in Rust cannot have dynamic-sized arrays directly, we can use Vec instead.
+    struct DynamicArray {
+        x: Vec<i32>,
+    }
+
+    struct Foo {
+        x: Vec<i32>,
+    }
+
+    let x = DynamicArray { x: vec![0; 1] }; // Example initialization
+    let y = Foo { x: vec![0; 1] }; // Example initialization
+
+    // Function pointer equivalent in Rust
+    let _: *const [i32; 1] = std::ptr::null();
+    let _: *const DynamicArray = std::ptr::null();
+
+    // Placeholder for the equivalent of typeof(struct { int x[n++]; });
+    // In Rust, we can define a struct with a Vec for dynamic size.
+    struct DynamicStruct {
+        x: Vec<i32>,
+    }
+
+    // Placeholder for the equivalent of typeof(struct r { int x[n++]; });
+    struct R {
+        x: Vec<i32>,
+    }
+
+    // Conditional check
+    if 13 != 1 {
+        std::process::exit(1); // Equivalent to __builtin_abort()
+    }
+}
