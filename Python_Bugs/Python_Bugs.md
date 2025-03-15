@@ -2,7 +2,7 @@
 ### Local frame not working with global when there is collision
 https://github.com/python/cpython/issues/130809
 
-C# translator does not understand stackFrame
+C# translator does not translate the problem correctly
 
 C++ translator does not translate the problem correctly
 
