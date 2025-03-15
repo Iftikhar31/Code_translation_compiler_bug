@@ -1,0 +1,107 @@
+#include <coroutine>
+#include <optional>
+#include <iostream>
+#include <exception>
+
+// A simple awaitable type to mimic Task.Yield() in C#
+struct YieldAwaitable {
+    bool await_ready() const noexcept { return false; }
+    void await_suspend(std::coroutine_handle<>) const noexcept { }
+    void await_resume() const noexcept { }
+};
+
+inline YieldAwaitable Yield() {
+    return YieldAwaitable{};
+}
+
+// Task<T> implementation for C++20 coroutines
+template<typename T>
+struct Task {
+    struct promise_type {
+        std::optional<T> value;
+        std::exception_ptr exception;
+
+        Task get_return_object() {
+            return Task{ std::coroutine_handle<promise_type>::from_promise(*this) };
+        }
+        std::suspend_always initial_suspend() { return {}; }
+        std::suspend_always final_suspend() noexcept { return {}; }
+        void unhandled_exception() { exception = std::current_exception(); }
+        template<typename U = T>
+        void return_value(U&& v) { value = std::forward<U>(v); }
+    };
+
+    std::coroutine_handle<promise_type> coro;
+
+    Task(std::coroutine_handle<promise_type> h) : coro(h) { }
+    Task(const Task&) = delete;
+    Task(Task&& other) noexcept : coro(other.coro) { other.coro = {}; }
+    ~Task() { if(coro) coro.destroy(); }
+
+    bool await_ready() { return false; }
+    void await_suspend(std::coroutine_handle<> h) { coro.resume(); }
+    T await_resume() {
+        if(coro.promise().exception)
+            std::rethrow_exception(coro.promise().exception);
+        return *coro.promise().value;
+    }
+};
+
+// Task<void> specialization for C++20 coroutines
+template<>
+struct Task<void> {
+    struct promise_type {
+        std::exception_ptr exception;
+
+        Task<void> get_return_object() {
+            return Task<void>{ std::coroutine_handle<promise_type>::from_promise(*this) };
+        }
+        std::suspend_always initial_suspend() { return {}; }
+        std::suspend_always final_suspend() noexcept { return {}; }
+        void unhandled_exception() { exception = std::current_exception(); }
+        void return_void() { }
+    };
+
+    std::coroutine_handle<promise_type> coro;
+
+    Task(std::coroutine_handle<promise_type> h) : coro(h) { }
+    Task(const Task&) = delete;
+    Task(Task&& other) noexcept : coro(other.coro) { other.coro = {}; }
+    ~Task() { if(coro) coro.destroy(); }
+
+    bool await_ready() { return false; }
+    void await_suspend(std::coroutine_handle<> h) { coro.resume(); }
+    void await_resume() {
+        if(coro.promise().exception)
+            std::rethrow_exception(coro.promise().exception);
+    }
+};
+
+// Definition of MyStruct (equivalent to "struct MyStruct { }" in C#)
+struct MyStruct { };
+
+// Declaration and definition of GetStructAsync()
+// Translated from "static async Task<MyStruct?> GetStructAsync()"
+static Task<std::optional<MyStruct>> GetStructAsync() {
+    co_await Yield();
+    co_return std::optional<MyStruct>{ MyStruct{} };
+}
+
+// Entry-point coroutine that mimics the top-level asynchronous code
+Task<void> main_coroutine() {
+    // Translated from "MyStruct? myStruct = await GetStructAsync();"
+    std::optional<MyStruct> myStruct = co_await GetStructAsync();
+    
+    // Translated from "MyStruct s1 = myStruct.Value;"
+    MyStruct s1 = myStruct.value();
+    
+    // For demonstration purposes, output a message indicating completion
+    std::cout << "MyStruct created and s1 assigned successfully." << std::endl;
+    co_return;
+}
+
+int main() {
+    // Since C++ main cannot be a coroutine, we call our coroutine and wait for its completion.
+    main_coroutine().await_resume();
+    return 0;
+}

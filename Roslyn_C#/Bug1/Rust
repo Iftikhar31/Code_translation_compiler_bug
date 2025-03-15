@@ -1,0 +1,27 @@
+struct C;
+
+impl C {
+    pub fn no_tuple(&self) -> Option<C> {
+        unimplemented!()
+    }
+
+    pub fn tuple(&self) -> (Option<C>, i32) {
+        unimplemented!()
+    }
+}
+
+fn main() {
+    let mut i: i32;
+    let mut c: Option<C> = None;
+
+    if c.is_some() {
+        c = c.as_ref().unwrap().no_tuple(); // No warning (as expected)
+    }
+
+    if c.is_some() {
+        let (new_c, new_i) = c.as_ref().unwrap().tuple(); // No warning
+        c = new_c;
+        i = new_i; // Assigning to i
+    }
+}
+

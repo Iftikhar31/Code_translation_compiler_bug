@@ -1,0 +1,16 @@
+class C:
+    def no_tuple(self):
+        raise NotImplementedError()
+
+    def tuple(self):
+        raise NotImplementedError()
+
+i = None
+c = None
+
+if c is not None:
+    c = c.no_tuple()  # No warning (as expected)
+
+if c is not None:
+    c, i = c.tuple()  # No warning in Python
+
