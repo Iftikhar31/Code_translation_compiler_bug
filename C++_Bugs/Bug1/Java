@@ -1,6 +1,6 @@
 import java.util.Arrays;
 import java.util.List;
-
+//Ifti/Aaron: This Public can be removed to get it compiled on godbolt.org
 public class Main {
     public static void main(String[] args) {
         List<Integer> list = true ? Arrays.asList(1, 2) : Arrays.asList(2, 1);
