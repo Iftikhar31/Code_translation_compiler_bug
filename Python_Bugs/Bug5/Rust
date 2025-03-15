@@ -1,0 +1,8 @@
+fn main() {
+    // Initialize the Python interpreter
+    pyo3::prepare_freethreaded_python();
+    pyo3::Python::with_gil(|_py| {
+        // Finalize the Python interpreter
+    });
+}
+
