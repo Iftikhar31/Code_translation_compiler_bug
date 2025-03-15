@@ -19,7 +19,7 @@ https://github.com/python/cpython/issues/118978
 
 Should display traceback rather than just overflow. 
 
-C# broken, only says stack overflow 
+C# broken, only says stack overflow. Different on OneCompiler vs Godbolt.
 
 C++ broken, only says timeout 
 
@@ -34,13 +34,13 @@ Randomly truncates on specific encodings when appending
 
 C# cannot translate encoding
 
-C++ cannot translate encoding
+C++ does not have this bug
 
 Java does not have this bug 
 
 Rust cannot translate encoding
 
 ### destroy_gil() is not called over multiple Py_Initialize() / Py_Finalize() calls
-[(https://github.com/python/cpython/issues/128341)](https://github.com/python/cpython/issues/104324)
+https://github.com/python/cpython/issues/104324
 
 Cannot be reproduced, method only exists in python. 
