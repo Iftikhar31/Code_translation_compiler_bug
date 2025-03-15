@@ -34,7 +34,7 @@ Randomly truncates on specific encodings when appending
 
 C# cannot translate encoding
 
-C++ cannot translate encoding
+C++ does not have this bug
 
 Java does not have this bug 
 
