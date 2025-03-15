@@ -19,7 +19,7 @@ https://github.com/python/cpython/issues/118978
 
 Should display traceback rather than just overflow. 
 
-C# broken, only says stack overflow 
+C# broken, only says stack overflow. Different on OneCompiler vs Godbolt.
 
 C++ broken, only says timeout 
 
