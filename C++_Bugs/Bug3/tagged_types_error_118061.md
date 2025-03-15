@@ -1,1 +1,2 @@
-This test case triggers compiler error for tagged types. For more details, please refer https://gcc.gnu.org/bugzilla/show_bug.cgi?id=118061
+This test case triggers compiler error for tagged types. For more details, please refer https://gcc.gnu.org/bugzilla/show_bug.cgi?id=118061.
+The direct conversion to Java or other languages is not possible as some C-specific constructs like sizeof() are not supported by Java, Python, C#, and Rust directly. Instead, the conversion algorithm applied some equivalent logic which might not be appropriate.
