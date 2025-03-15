@@ -1,2 +1,2 @@
 This test case makes gcc use more and more memory until the system
-imposes a limit (or crashes). For more details, please refer https://gcc.gnu.org/bugzilla/show_bug.cgi?id=119094
+imposes a limit (or crashes). For more details, please refer https://gcc.gnu.org/bugzilla/show_bug.cgi?id=119094.  like C++, the C# program got terminated with SIGKILL and returned code 137 as shown in the screenshots below. This potential C# bug should be further investigated to find why the program got terminated by SIGKILL signal and fixed if needed by C# compiler developer community. Python and Java had translation errors. Bug 5 is strange with rust and requires more research. 
