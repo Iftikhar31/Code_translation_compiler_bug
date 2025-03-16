@@ -5,7 +5,7 @@
 To translate the test samples from one language to another, we evaluated different programming language translators available online and selected codecovert.ai [11], which performed reasonably well. We analyzed the transformed code to ensure that the transformation is bug-free and, if not, fixed it manually where possible. We also ensured that the code is transferable, as some functions in one language might not be available in another. For example, C++ has pointers, but Java does not. In most cases, Java translations had such limitations, which are documented. The translated codes are validated for compiler bugs using publicly available compiler websites for various languages like godbolt.org [12] and OneCompiler.com [13]. We documented each of our findings and summarized our observations. Finally, we stored the original test cases triggering the compiler errors and equivalent other language codes in a GitHub public repository to enable other developers to take advantage of them.
 We fix the java code for Godbolt by removing the "public" in public class Main to allow for running of the code. Otherwise, it would not run. 
 
-##Approach
+Approach
 
 ![Approach-Workflow.png](Approach-Workflow.png)
 
