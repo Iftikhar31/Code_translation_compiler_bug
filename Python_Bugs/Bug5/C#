@@ -1,0 +1,13 @@
+using Python.Runtime;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        PythonEngine.Initialize();
+        PythonEngine.Shutdown();
+        PythonEngine.Initialize();
+        PythonEngine.Shutdown();
+    }
+}
+
