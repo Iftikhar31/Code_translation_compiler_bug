@@ -13,4 +13,4 @@ The workflow of our approach is shown above. The new or unresolved compiler bugs
 The findings of this replication study, whether or not the same error is raised in the target compiler, are documented and stored in the corresponding bug folder created in this repository. All the original codes (source) that cause compiler bugs and equivalent other language codes (target) are stored along with the screenshots of the compiler outputs.
 
 ## Replication
-To replicate our results, simply plug in the code in each bug into Godbolt or OneCompiler, ensure that the compiler version that you are using is the same as the one in the screenshot and then you should see the same results. 
+To replicate our results, simply plug in the code\(s\) in each bug into Godbolt or OneCompiler, ensure that the compiler version that you are using is the same as the one in the screenshot and then you should see the same results. 
