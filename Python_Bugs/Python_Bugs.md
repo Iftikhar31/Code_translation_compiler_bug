@@ -1,6 +1,7 @@
 ﻿# Python Bugs
 ### Local frame not working with global when there is collision
 https://github.com/python/cpython/issues/130809
+
 This bug is a bug to do with “PyFrame_LocalsToFast”. There is a collision error when colliding with a local variable, removing both Pyframe and local variables. This error comes from the implementation of PyFrame which is an error with how the PyFrame is implemented. This is not necessarily a compilation error, it could be a language error. This bug cannot be translated to all the other languages because PyFrame_LocalsToFast does not have an equivalent in the other languages, or at least not one that the AI can convert correctly. Therefor, this bug is untestable with the current AI model we are using, and might even not exist in other languages. 
 C# translator does not translate the problem correctly
 
@@ -12,6 +13,7 @@ Rust translator does not translate the problem correctly
 
 ### Order of conditionals not correct after compilation 
 https://github.com/python/cpython/issues/122821
+
 This is an error with the translation of a while loop. There is an inconsistency in the location of the while loop in the iterations. This is definitely a compiler error, the compiler is translating this to machine code weirdly. We can see this problem in godbolt. The code is translated correctly into all the other languages, but the error is not replicated. Each language translates code very differently, therefore machine code equivalencies are very rare if not impossible. 
 ### TRACEBACK
 https://github.com/python/cpython/issues/118978
