@@ -13,3 +13,7 @@ The workflow of our approach is shown in Figure 1. The new or unresolved compile
 The findings of this replication study, whether the same error is raised in the target compiler or not,  are documented and stored in the corresponding bug folder created in GitHub. All the original codes (source) causing the compiler bugs and the equivalent other language codes (target) are stored in the GitHub repository along with the screenshots of the compiler outputs.
 
 
+## GitHub repository structure
+The GitHub repository contains a general README.md file which explains our approach to this compiler replication study prototype.
+All the test cases and their conversions are stored in the GitHub repository with a .md file for each compiler error containing links where the details of these errors in the public databases 
+can be found. We also have stored the screenshots of cross-compiler outputs for each bug in the GitHub repository.
